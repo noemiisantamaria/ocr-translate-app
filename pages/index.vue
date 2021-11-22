@@ -1,13 +1,13 @@
 <template>
   <b-container fluid>
     <div v-if="!image" class="mt-3 dropbox">
-      <input type="file" @change="onFileChange" class="input-file">
+      <input type="file" accept=".jpeg,.jpg,.pdf,.png" @change="onFileChange" class="input-file">
       <p>Drag your file here to begin or click to browse</p>
     </div>
     <div v-else class="mt-3">
       <b-container class="file-container">
         <img class="file-img-container" :src="image" />
-        <b-button variant="outline-primary shadow-none" @click="removeImage">Remove image</b-button>
+        <b-button variant="outline-primary shadow-none" @click="removeImage">Remove</b-button>
       </b-container>
     </div>
     <b-container v-if="image" fluid class="mt-5">
