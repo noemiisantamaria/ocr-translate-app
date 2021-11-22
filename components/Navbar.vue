@@ -29,3 +29,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+a.nav-link {
+  font-weight: bold;
+}
+</style>

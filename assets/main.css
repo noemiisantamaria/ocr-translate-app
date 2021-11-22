@@ -2,9 +2,11 @@
     --color: #000000;
     --color-primary: #00c58e;
     --color-secondary: #0e2233;
-    --bg: #f3f5f4;
+    --bg: #ebf4f1;
     --bg-secondary: #fff;
     --border-color: #ddd;
+    --dropbox-color: #646464;
+    --dropbox-color-hover: #8181813d;
   }
   
   .dark-mode {
@@ -14,6 +16,8 @@
     --bg: #091a28;
     --bg-secondary: #071521;
     --border-color: #0d2538;
+    --dropbox-color: #00c58e;
+    --dropbox-color-hover: #d5d5d53d;
   }
   .sepia-mode {
     --color: #433422;
@@ -22,6 +26,8 @@
     --bg: #f1e7d0;
     --bg-secondary: #eae0c9;
     --border-color: #ded0bf;
+    --dropbox-color: #918ab8;
+    --dropbox-color-hover: #9992923d;
   }
   
   body {
@@ -43,3 +49,25 @@
   /* .navbar-light .navbar-toggler-icon {
     filter: grayscale(1) invert(1);
   } */
+  .dropbox {
+    outline-color: var(--dropbox-color);
+    color: var(--dropbox-color);
+  }
+  .dropbox p{
+    color: var(--color);
+  }
+  .dropbox:hover {
+    background: var(--dropbox-color-hover);
+  }
+  .btn-outline-primary {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  .btn-outline-primary:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+  }
+  .btn-outline-primary:active {
+    border-color: var(--color-primary) !important;
+    background: var(--color-primary) !important;
+  }
