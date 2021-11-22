@@ -6,10 +6,33 @@
     </div>
     <div v-else class="mt-3">
       <b-container class="file-container">
-        <img :src="image" />
+        <img class="file-img-container" :src="image" />
         <b-button variant="outline-primary shadow-none" @click="removeImage">Remove image</b-button>
       </b-container>
     </div>
+    <b-container v-if="image" fluid class="mt-5">
+      <b-row>
+        <b-col sm="5">
+          <b-row>
+            <b-col>
+              <b-form-textarea />
+            </b-col>
+          </b-row>
+        </b-col>
+        <b-col sm="2" align-self="center">
+          <b-row align-h="center">
+            <b-button variant="outline-primary shadow-none" @click="translate">Translate >></b-button>
+          </b-row>
+        </b-col>
+        <b-col sm="5">
+          <b-row>
+            <b-col>
+              <b-form-textarea />
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-container>
   </b-container>
 </template>
 
@@ -39,6 +62,10 @@ export default {
 
     removeImage () {
       this.image = ''
+    },
+
+    translate () {
+      console.log('translate')
     }
   }
 }
@@ -66,5 +93,24 @@ export default {
   justify-content: center;
   align-items: center;
   height: 200px;
+}
+.file-img-container {
+  max-width: 100%;
+  height: auto;
+}
+.text-container {
+  outline: 1px solid;
+  outline-offset: -10px;
+  height: 200px;
+  font-size: 1.2em;
+}
+.ocr-text {
+  outline: 4px dashed;
+  outline-offset: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2em;
 }
 </style>
