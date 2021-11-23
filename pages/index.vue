@@ -37,10 +37,16 @@
 </template>
 
 <script>
+import OCRApi from '@/lib/ocrApi.js'
+
 export default {
   data() {
     return {
       image: ''
+      image: '',
+      isOverlayRequired: true,
+      lang: 'eng',
+      url: ''
     }
   },
 
@@ -58,6 +64,15 @@ export default {
         this.image = e.target.result
       };
       reader.readAsDataURL(file)
+    },
+
+    getOCRConversation() {
+      OCRApi.getOCRConversation(this.image, this.lang, this.isOverlayRequired)
+        .then((response) => {
+          const payload = response.data
+          console.log(payload);
+          // Vue.$log.debug('payload:', payload)
+        })
     },
 
     removeImage () {
