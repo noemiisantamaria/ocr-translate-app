@@ -15,7 +15,9 @@
         <b-col sm="5">
           <b-row>
             <b-col>
-              <b-form-textarea />
+              <b-form-textarea
+                v-model="parsedText"
+              />
             </b-col>
           </b-row>
         </b-col>
@@ -46,6 +48,7 @@ export default {
       file: null,
       isOverlayRequired: true,
       lang: 'eng',
+      parsedText: '',
       url: ''
     }
   },
@@ -77,12 +80,19 @@ export default {
         .then((response) => {
           const payload = response.data
           console.log(payload);
-          // Vue.$log.debug('payload:', payload)
+          if (!payload.IsErroredOnProcessing) {
+            payload.ParsedResults.forEach(element => {
+              this.parsedText += element.ParsedText
+            });
+          } else {
+            console.log("Generic error!");
+          }
         })
     },
 
     removeImage () {
       this.image = ''
+      this.parsedText = ''
     },
 
     translate () {
