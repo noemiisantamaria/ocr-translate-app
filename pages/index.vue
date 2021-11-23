@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <div v-if="!image" class="mt-3 dropbox">
-      <input type="file" accept=".jpeg,.jpg,.pdf,.png" @change="onFileChange" class="input-file">
+      <input type="file" accept=".gif,.jpeg,.jpg,.pdf,.png" @change="onFileChange" class="input-file">
       <p>Drag your file here to begin or click to browse</p>
     </div>
     <div v-else class="mt-3">
@@ -42,8 +42,8 @@ import OCRApi from '@/lib/ocrApi.js'
 export default {
   data() {
     return {
-      image: ''
       image: '',
+      file: null,
       isOverlayRequired: true,
       lang: 'eng',
       url: ''
@@ -56,18 +56,24 @@ export default {
       if (!files.length)
         return;
       this.createImage(files[0])
+      this.file = files[0]
     },
 
     createImage (file) {
       var reader = new FileReader()
       reader.onload = (e) => {
         this.image = e.target.result
+        this.getOCRConversation()
       };
       reader.readAsDataURL(file)
     },
 
     getOCRConversation() {
-      OCRApi.getOCRConversation(this.image, this.lang, this.isOverlayRequired)
+      const formData = new FormData();
+      formData.append("file", this.file)
+      formData.append("language", this.lang);
+      formData.append("isOverlayRequired", this.isOverlayRequired);
+      OCRApi.getOCRConversation(formData)
         .then((response) => {
           const payload = response.data
           console.log(payload);
